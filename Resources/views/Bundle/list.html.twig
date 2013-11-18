@@ -1,0 +1,48 @@
+{#
+
+(c) Sjopet Internetdiensten
+
+@author Sjoerd Peters <speters@sjopet.nl>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+
+#}
+{% extends "TwigBundle::layout.html.twig" %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ asset('bundles/sjopetsoapclientgenerator/css/style.css') }}" />
+{% endblock %}
+
+{% block title 'Sjopet-Generator' %}
+
+{% block body %}
+    {% for flashMessage in app.session.flashbag.get('notice') %}
+        <div class="flash-message">
+            <em>Notice</em>: {{ flashMessage }}
+        </div>
+    {% endfor %}
+
+    {% block content_header %}
+        <ul id="menu">
+            {% block content_header_more %}
+                <li><a href="{{ path('sjopet_generate_bundle') }}">Home</a></li>
+            {% endblock %}
+        </ul>
+
+        <div style="clear: both"></div>
+    {% endblock %}
+
+    <div class="block">
+        {% block content %}
+            <h1>Sjopet Generator</h1><hr /><br>
+            <p>Select a Bundle from the list of active bundles in your project.</p>
+            <ul>
+                {% for bundle in bundles %}
+                <li><a href="{{ path('sjopet_generate_bundle_edit', {'name' : bundle.name}) }}">{{ bundle.name }}</a></li>
+                {% endfor %}
+            </ul>
+        {% endblock %}
+    </div>
+
+{% endblock %}

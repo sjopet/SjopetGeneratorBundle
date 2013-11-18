@@ -1,0 +1,56 @@
+{#
+
+(c) Sjopet Internetdiensten
+
+@author Sjoerd Peters <speters@sjopet.nl>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+
+#}
+{% extends "TwigBundle::layout.html.twig" %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ asset('bundles/sjopetsoapclientgenerator/css/style.css') }}" />
+{% endblock %}
+
+{% block title 'Sjopet-Generator' %}
+
+{% block body %}
+    {% for flashMessage in app.session.flashbag.get('notice') %}
+        <div class="flash-message">
+            <em>Notice</em>: {{ flashMessage }}
+        </div>
+    {% endfor %}
+
+    {% block content_header %}
+        <ul id="menu">
+            {% block content_header_more %}
+                <li><a href="{{ path('sjopet_generate_bundle') }}">Home</a></li>
+            {% endblock %}
+        </ul>
+
+        <div style="clear: both"></div>
+    {% endblock %}
+
+    <div class="block">
+        {% block content %}
+            <h1>Sjopet Generator</h1><hr /><br>
+            <p>What would you like to do to this Bundle?</p>
+            <ul>
+                <li><a href="{{ path('sjopet_generate_bundle_code_style', {'name' : bundle.name}) }}">Check code style</a></li>
+                <li><a href="{{ path('sjopet_generate_file_create', {'bundle' : bundle.name}) }}">Add a file</a></li>
+                <li><a href="{{ path('sjopet_generate_tests', {'bundle' : bundle.name}) }}">Generate test stubs</a></li>
+                <li><a href="{{ path('sjopet_generate_docs', {'bundle' : bundle.name}) }}">Generate docblocks</a></li>
+            </ul>
+            <br>
+            <p>Or pick a file from the list below to edit:</p>
+            <ul>
+                {% for file in files %}
+                <li><a href="{{ path('sjopet_generate_file_edit', {'bundle' : bundle.name, 'file' : file.localUrlPath}) }}">{{ file.localPath }}</a></li>
+                {% endfor %}
+            </ul>
+        {% endblock %}
+    </div>
+
+{% endblock %}

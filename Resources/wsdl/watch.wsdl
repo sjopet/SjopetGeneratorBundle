@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<definitions xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://extranet.sjopet.nl/services/watch" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns="http://schemas.xmlsoap.org/wsdl/" targetNamespace="http://extranet.sjopet.nl/services/watch">
+<types>
+<xsd:schema targetNamespace="http://extranet.sjopet.nl/services/watch"
+>
+ <xsd:import namespace="http://schemas.xmlsoap.org/soap/encoding/" />
+ <xsd:import namespace="http://schemas.xmlsoap.org/wsdl/" />
+ <xsd:complexType name="Medewerker">
+  <xsd:all>
+   <xsd:element name="MDW_ID" type="xsd:int"/>
+   <xsd:element name="NAAM" type="xsd:string"/>
+   <xsd:element name="EMAIL" type="xsd:string"/>
+   <xsd:element name="REKENINGNUMMER" type="xsd:string"/>
+   <xsd:element name="GEBOORTEDATUM" type="xsd:date"/>
+   <xsd:element name="SOFINUMMER" type="xsd:string"/>
+   <xsd:element name="MOBIEL" type="xsd:string"/>
+   <xsd:element name="ADRES" type="xsd:string"/>
+   <xsd:element name="POSTCODE" type="xsd:string"/>
+   <xsd:element name="PLAATS" type="xsd:string"/>
+   <xsd:element name="LAND" type="xsd:string"/>
+   <xsd:element name="TELEFOON_THUIS" type="xsd:string"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="Medewerkers">
+  <xsd:complexContent>
+   <xsd:restriction base="SOAP-ENC:Array">
+    <xsd:attribute ref="SOAP-ENC:arrayType" wsdl:arrayType="tns:Medewerker[]"/>
+   </xsd:restriction>
+  </xsd:complexContent>
+ </xsd:complexType>
+ <xsd:complexType name="Klant">
+  <xsd:all>
+   <xsd:element name="KTN_ID" type="xsd:int"/>
+   <xsd:element name="CODE" type="xsd:string"/>
+   <xsd:element name="NAAM" type="xsd:string"/>
+   <xsd:element name="POST_ADRES" type="xsd:string"/>
+   <xsd:element name="POST_POSTBUS" type="xsd:string"/>
+   <xsd:element name="POST_POSTCODE" type="xsd:string"/>
+   <xsd:element name="POST_PLAATS" type="xsd:string"/>
+   <xsd:element name="POST_LAND" type="xsd:string"/>
+   <xsd:element name="BEZOEK_ADRES" type="xsd:string"/>
+   <xsd:element name="BEZOEK_POSTCODE" type="xsd:string"/>
+   <xsd:element name="BEZOEK_PLAATS" type="xsd:string"/>
+   <xsd:element name="BEZOEK_LAND" type="xsd:string"/>
+   <xsd:element name="FCT_KTN_NAAM" type="xsd:string"/>
+   <xsd:element name="FCT_ADRES" type="xsd:string"/>
+   <xsd:element name="FCT_POSTBUS" type="xsd:string"/>
+   <xsd:element name="FCT_POSTCODE" type="xsd:string"/>
+   <xsd:element name="FCT_PLAATS" type="xsd:string"/>
+   <xsd:element name="FCT_LAND" type="xsd:string"/>
+   <xsd:element name="TELEFOON" type="xsd:string"/>
+   <xsd:element name="FAX" type="xsd:string"/>
+   <xsd:element name="EMAIL" type="xsd:string"/>
+   <xsd:element name="KLANTNUMMER" type="xsd:string"/>
+   <xsd:element name="BANKREKENING" type="xsd:string"/>
+   <xsd:element name="DESCRIPTION" type="xsd:string"/>
+   <xsd:element name="WEBSITE" type="xsd:string"/>
+   <xsd:element name="STATUS" type="xsd:string"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="Klanten">
+  <xsd:complexContent>
+   <xsd:restriction base="SOAP-ENC:Array">
+    <xsd:attribute ref="SOAP-ENC:arrayType" wsdl:arrayType="tns:Klant[]"/>
+   </xsd:restriction>
+  </xsd:complexContent>
+ </xsd:complexType>
+ <xsd:complexType name="Project">
+  <xsd:all>
+   <xsd:element name="PJT_ID" type="xsd:int"/>
+   <xsd:element name="KTN_KTN_ID" type="xsd:int"/>
+   <xsd:element name="CTP_CTP_ID" type="xsd:int"/>
+   <xsd:element name="KUN_KUN_ID" type="xsd:int"/>
+   <xsd:element name="ATG_ATG_ID" type="xsd:int"/>
+   <xsd:element name="NAAM" type="xsd:string"/>
+   <xsd:element name="OMSCHRIJVING" type="xsd:string"/>
+   <xsd:element name="TYPE" type="xsd:string"/>
+   <xsd:element name="UREN" type="xsd:string"/>
+   <xsd:element name="DEADLINE" type="xsd:date"/>
+   <xsd:element name="UURTARIEF" type="xsd:string"/>
+   <xsd:element name="GEPLAND" type="xsd:string"/>
+   <xsd:element name="STATUS" type="xsd:string"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="Projecten">
+  <xsd:complexContent>
+   <xsd:restriction base="SOAP-ENC:Array">
+    <xsd:attribute ref="SOAP-ENC:arrayType" wsdl:arrayType="tns:Project[]"/>
+   </xsd:restriction>
+  </xsd:complexContent>
+ </xsd:complexType>
+ <xsd:complexType name="Projectonderdeel">
+  <xsd:all>
+   <xsd:element name="POD_ID" type="xsd:int"/>
+   <xsd:element name="PJT_PJT_ID" type="xsd:int"/>
+   <xsd:element name="KUN_KUN_ID" type="xsd:int"/>
+   <xsd:element name="CODE" type="xsd:string"/>
+   <xsd:element name="ONDERDEELNAAM" type="xsd:string"/>
+   <xsd:element name="OMSCHRIJVING" type="xsd:string"/>
+   <xsd:element name="UREN" type="xsd:string"/>
+   <xsd:element name="DEADLINE" type="xsd:date"/>
+   <xsd:element name="STATUS" type="xsd:string"/>
+   <xsd:element name="UURTARIEF" type="xsd:string"/>
+   <xsd:element name="GEFACTUREERD" type="xsd:string"/>
+   <xsd:element name="VERWACHT_STARTDATUM" type="xsd:date"/>
+   <xsd:element name="WERKELIJK_STARTDATUM" type="xsd:date"/>
+   <xsd:element name="VERWACHT_EINDDATUM" type="xsd:date"/>
+   <xsd:element name="WERKELIJK_EINDDATUM" type="xsd:date"/>
+   <xsd:element name="LEM_LEM_ID" type="xsd:int"/>
+   <xsd:element name="CODE_KORT" type="xsd:string"/>
+   <xsd:element name="PERCENTAGE_GEREED" type="xsd:string"/>
+   <xsd:element name="POD_POD_ID_ZELFDE_START" type="xsd:int"/>
+   <xsd:element name="POD_POD_ID_ZELFDE_EIND" type="xsd:int"/>
+   <xsd:element name="POD_POD_ID_START_NA" type="xsd:int"/>
+   <xsd:element name="PRIORITEIT" type="xsd:string"/>
+   <xsd:element name="MDW_MDW_ID" type="xsd:int"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="Projectonderdelen">
+  <xsd:complexContent>
+   <xsd:restriction base="SOAP-ENC:Array">
+    <xsd:attribute ref="SOAP-ENC:arrayType" wsdl:arrayType="tns:Projectonderdeel[]"/>
+   </xsd:restriction>
+  </xsd:complexContent>
+ </xsd:complexType>
+ <xsd:complexType name="Contactpersoon">
+  <xsd:all>
+   <xsd:element name="CTP_ID" type="xsd:int"/>
+   <xsd:element name="KTN_KTN_ID" type="xsd:int"/>
+   <xsd:element name="ACHTERNAAM" type="xsd:string"/>
+   <xsd:element name="VOORNAAM" type="xsd:string"/>
+   <xsd:element name="VOORLETTERS" type="xsd:string"/>
+   <xsd:element name="TUSSENVOEGSEL" type="xsd:string"/>
+   <xsd:element name="GESLACHT" type="xsd:string"/>
+   <xsd:element name="GEBOORTEDATUM" type="xsd:date"/>
+   <xsd:element name="TITEL" type="xsd:string"/>
+   <xsd:element name="TELEFOON" type="xsd:string"/>
+   <xsd:element name="MOBIEL" type="xsd:string"/>
+   <xsd:element name="EMAIL" type="xsd:string"/>
+   <xsd:element name="PRIVE_ADRES" type="xsd:string"/>
+   <xsd:element name="PRIVE_POSTCODE" type="xsd:string"/>
+   <xsd:element name="PRIVE_PLAATS" type="xsd:string"/>
+   <xsd:element name="PRIVE_LAND" type="xsd:string"/>
+   <xsd:element name="PRIVE_TELEFOON" type="xsd:string"/>
+   <xsd:element name="STATUS" type="xsd:string"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="Contactpersonen">
+  <xsd:complexContent>
+   <xsd:restriction base="SOAP-ENC:Array">
+    <xsd:attribute ref="SOAP-ENC:arrayType" wsdl:arrayType="tns:Contactpersoon[]"/>
+   </xsd:restriction>
+  </xsd:complexContent>
+ </xsd:complexType>
+ <xsd:complexType name="Uren">
+  <xsd:complexContent>
+   <xsd:restriction base="SOAP-ENC:Array">
+    <xsd:attribute ref="SOAP-ENC:arrayType" wsdl:arrayType="tns:Uur[]"/>
+   </xsd:restriction>
+  </xsd:complexContent>
+ </xsd:complexType>
+ <xsd:complexType name="Uur">
+  <xsd:all>
+   <xsd:element name="UGW_ID" type="xsd:int"/>
+   <xsd:element name="UREN" type="xsd:string"/>
+   <xsd:element name="DATUM" type="xsd:date"/>
+   <xsd:element name="OPMERKING" type="xsd:string"/>
+   <xsd:element name="MDW_MDW_ID" type="xsd:int"/>
+   <xsd:element name="POD_POD_ID" type="xsd:int"/>
+   <xsd:element name="FCT_FCT_ID" type="xsd:int"/>
+  </xsd:all>
+ </xsd:complexType>
+</xsd:schema>
+</types>
+<message name="NVS_service_watch..geef_medewerkersRequest">
+  <part name="alleen_actief" type="xsd:Boolean" /></message>
+<message name="NVS_service_watch..geef_medewerkersResponse">
+  <part name="medewerkers" type="tns:Medewerkers" /></message>
+<message name="NVS_service_watch..geef_medewerkerRequest">
+  <part name="mdw_id" type="xsd:int" /></message>
+<message name="NVS_service_watch..geef_medewerkerResponse">
+  <part name="medewerker" type="tns:Medewerker" /></message>
+<message name="NVS_service_watch..wijzig_medewerkerRequest">
+  <part name="medewerker" type="tns:Medewerker" /></message>
+<message name="NVS_service_watch..wijzig_medewerkerResponse">
+  <part name="success" type="xsd:boolean" /></message>
+<message name="NVS_service_watch..geef_klantenRequest">
+  <part name="alleen_actief" type="xsd:Boolean" /></message>
+<message name="NVS_service_watch..geef_klantenResponse">
+  <part name="klanten" type="tns:Klanten" /></message>
+<message name="NVS_service_watch..geef_klantRequest">
+  <part name="ktn_id" type="xsd:int" /></message>
+<message name="NVS_service_watch..geef_klantResponse">
+  <part name="klant" type="tns:Klant" /></message>
+<message name="NVS_service_watch..geef_projectenRequest">
+  <part name="ktn_id" type="xsd:int" />
+  <part name="status" type="xsd:String" /></message>
+<message name="NVS_service_watch..geef_projectenResponse">
+  <part name="projecten" type="tns:Projecten" /></message>
+<message name="NVS_service_watch..geef_projectRequest">
+  <part name="pjt_id" type="xsd:int" /></message>
+<message name="NVS_service_watch..geef_projectResponse">
+  <part name="project" type="tns:Project" /></message>
+<message name="NVS_service_watch..geef_projectonderdelenRequest">
+  <part name="pjt_id" type="xsd:int" />
+  <part name="status" type="xsd:String" /></message>
+<message name="NVS_service_watch..geef_projectonderdelenResponse">
+  <part name="projectonderdelen" type="tns:Projectonderdelen" /></message>
+<message name="NVS_service_watch..geef_contactpersonenRequest">
+  <part name="ktn_id" type="xsd:int" />
+  <part name="alleen_actief" type="xsd:Boolean" /></message>
+<message name="NVS_service_watch..geef_contactpersonenResponse">
+  <part name="contactpersonen" type="tns:Contactpersonen" /></message>
+<message name="NVS_service_watch..geef_alle_contactpersonenRequest">
+  <part name="alleen_actief" type="xsd:Boolean" /></message>
+<message name="NVS_service_watch..geef_alle_contactpersonenResponse">
+  <part name="contactpersonen" type="tns:Contactpersonen" /></message>
+<message name="NVS_service_watch..geef_contactpersoonRequest">
+  <part name="ctp_id" type="xsd:int" /></message>
+<message name="NVS_service_watch..geef_contactpersoonResponse">
+  <part name="contactpersoon" type="tns:Contactpersoon" /></message>
+<message name="NVS_service_watch..geef_urenRequest">
+  <part name="limit_start" type="xsd:int" />
+  <part name="limit_count" type="xsd:int" /></message>
+<message name="NVS_service_watch..geef_urenResponse">
+  <part name="uren" type="tns:Uren" /></message>
+<message name="NVS_service_watch..update_klantenRequest">
+  <part name="klanten" type="tns:Klanten" /></message>
+<message name="NVS_service_watch..update_klantenResponse">
+  <part name="success" type="xsd:Boolean" /></message>
+<message name="NVS_service_watch..update_contactpersonenRequest">
+  <part name="Contacten" type="tns:Contactpersonen" /></message>
+<message name="NVS_service_watch..update_contactpersonenResponse">
+  <part name="success" type="xsd:Boolean" /></message>
+<message name="NVS_service_watch..insert_klantRequest">
+  <part name="klant" type="tns:Klant" /></message>
+<message name="NVS_service_watch..insert_klantResponse">
+  <part name="ktn_id" type="xsd:int" /></message>
+<message name="NVS_service_watch..insert_contactpersoonRequest">
+  <part name="Contact" type="tns:Contactpersoon" /></message>
+<message name="NVS_service_watch..insert_contactpersoonResponse">
+  <part name="ctp_id" type="xsd:int" /></message>
+<portType name="Watch_servicesPortType">
+  <operation name="NVS_service_watch..geef_medewerkers">
+    <documentation>Alle (actieve) medewerkers opvragen</documentation>
+    <input message="tns:NVS_service_watch..geef_medewerkersRequest"/>
+    <output message="tns:NVS_service_watch..geef_medewerkersResponse"/>
+  </operation>
+  <operation name="NVS_service_watch..geef_medewerker">
+    <documentation>Medewerker opvragen</documentation>
+    <input message="tns:NVS_service_watch..geef_medewerkerRequest"/>
+    <output message="tns:NVS_service_watch..geef_medewerkerResponse"/>
+  </operation>
+  <operation name="NVS_service_watch..wijzig_medewerker">
+    <documentation>Medewerker wijzigen</documentation>
+    <input message="tns:NVS_service_watch..wijzig_medewerkerRequest"/>
+    <output message="tns:NVS_service_watch..wijzig_medewerkerResponse"/>
+  </operation>
+  <operation name="NVS_service_watch..geef_klanten">
+    <documentation>Alle (actieve) klanten opvragen</documentation>
+    <input message="tns:NVS_service_watch..geef_klantenRequest"/>
+    <output message="tns:NVS_service_watch..geef_klantenResponse"/>
+  </operation>
+  <operation name="NVS_service_watch..geef_klant">
+    <documentation>Klant opvragen</documentation>
+    <input message="tns:NVS_service_watch..geef_klantRequest"/>
+    <output message="tns:NVS_service_watch..geef_klantResponse"/>
+  </operation>
+  <operation name="NVS_service_watch..geef_projecten">
+    <documentation>Alle projecten (met status X) van een klant opvragen</documentation>
+    <input message="tns:NVS_service_watch..geef_projectenRequest"/>
+    <output message="tns:NVS_service_watch..geef_projectenResponse"/>
+  </operation>
+  <operation name="NVS_service_watch..geef_project">
+    <documentation>Project opvragen</documentation>
+    <input message="tns:NVS_service_watch..geef_projectRequest"/>
+    <output message="tns:NVS_service_watch..geef_projectResponse"/>
+  </operation>
+  <operation name="NVS_service_watch..geef_projectonderdelen">
+    <documentation>Alle projectenonderdelen (met status X) van een project opvragen</documentation>
+    <input message="tns:NVS_service_watch..geef_projectonderdelenRequest"/>
+    <output message="tns:NVS_service_watch..geef_projectonderdelenResponse"/>
+  </operation>
+  <operation name="NVS_service_watch..geef_contactpersonen">
+    <documentation>Alle (actieve) contactpersonen van een klant opvragen</documentation>
+    <input message="tns:NVS_service_watch..geef_contactpersonenRequest"/>
+    <output message="tns:NVS_service_watch..geef_contactpersonenResponse"/>
+  </operation>
+  <operation name="NVS_service_watch..geef_alle_contactpersonen">
+    <documentation>Alle (actieve) contactpersonen opvragen</documentation>
+    <input message="tns:NVS_service_watch..geef_alle_contactpersonenRequest"/>
+    <output message="tns:NVS_service_watch..geef_alle_contactpersonenResponse"/>
+  </operation>
+  <operation name="NVS_service_watch..geef_contactpersoon">
+    <documentation>Contactpersoon opvragen</documentation>
+    <input message="tns:NVS_service_watch..geef_contactpersoonRequest"/>
+    <output message="tns:NVS_service_watch..geef_contactpersoonResponse"/>
+  </operation>
+  <operation name="NVS_service_watch..geef_uren">
+    <documentation>Alle uren opvragen als bulk</documentation>
+    <input message="tns:NVS_service_watch..geef_urenRequest"/>
+    <output message="tns:NVS_service_watch..geef_urenResponse"/>
+  </operation>
+  <operation name="NVS_service_watch..update_klanten">
+    <documentation>Een lijst met klant updaten</documentation>
+    <input message="tns:NVS_service_watch..update_klantenRequest"/>
+    <output message="tns:NVS_service_watch..update_klantenResponse"/>
+  </operation>
+  <operation name="NVS_service_watch..update_contactpersonen">
+    <documentation>Een lijst met contactpersonen updaten</documentation>
+    <input message="tns:NVS_service_watch..update_contactpersonenRequest"/>
+    <output message="tns:NVS_service_watch..update_contactpersonenResponse"/>
+  </operation>
+  <operation name="NVS_service_watch..insert_klant">
+    <documentation>Een klant toevoegen</documentation>
+    <input message="tns:NVS_service_watch..insert_klantRequest"/>
+    <output message="tns:NVS_service_watch..insert_klantResponse"/>
+  </operation>
+  <operation name="NVS_service_watch..insert_contactpersoon">
+    <documentation>Een contactpersoon toevoegen</documentation>
+    <input message="tns:NVS_service_watch..insert_contactpersoonRequest"/>
+    <output message="tns:NVS_service_watch..insert_contactpersoonResponse"/>
+  </operation>
+</portType>
+<binding name="Watch_servicesBinding" type="tns:Watch_servicesPortType">
+  <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+  <operation name="NVS_service_watch..geef_medewerkers">
+    <soap:operation soapAction="http://extranet.sjopet.nl/services/watch#geef_medewerkers" style="rpc"/>
+    <input><soap:body use="encoded" namespace="http://extranet.sjopet.nl/services/watch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></input>
+    <output><soap:body use="encoded" namespace="http://extranet.sjopet.nl/services/watch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></output>
+  </operation>
+  <operation name="NVS_service_watch..geef_medewerker">
+    <soap:operation soapAction="http://extranet.sjopet.nl/services/watch#geef_medewerker" style="rpc"/>
+    <input><soap:body use="encoded" namespace="http://extranet.sjopet.nl/services/watch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></input>
+    <output><soap:body use="encoded" namespace="http://extranet.sjopet.nl/services/watch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></output>
+  </operation>
+  <operation name="NVS_service_watch..wijzig_medewerker">
+    <soap:operation soapAction="http://extranet.sjopet.nl/services/watch#wijzig_medewerker" style="rpc"/>
+    <input><soap:body use="encoded" namespace="http://extranet.sjopet.nl/services/watch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></input>
+    <output><soap:body use="encoded" namespace="http://extranet.sjopet.nl/services/watch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></output>
+  </operation>
+  <operation name="NVS_service_watch..geef_klanten">
+    <soap:operation soapAction="http://extranet.sjopet.nl/services/watch#geef_klanten" style="rpc"/>
+    <input><soap:body use="encoded" namespace="http://extranet.sjopet.nl/services/watch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></input>
+    <output><soap:body use="encoded" namespace="http://extranet.sjopet.nl/services/watch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></output>
+  </operation>
+  <operation name="NVS_service_watch..geef_klant">
+    <soap:operation soapAction="http://extranet.sjopet.nl/services/watch#geef_klant" style="rpc"/>
+    <input><soap:body use="encoded" namespace="http://extranet.sjopet.nl/services/watch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></input>
+    <output><soap:body use="encoded" namespace="http://extranet.sjopet.nl/services/watch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></output>
+  </operation>
+  <operation name="NVS_service_watch..geef_projecten">
+    <soap:operation soapAction="http://extranet.sjopet.nl/services/watch#geef_projecten" style="rpc"/>
+    <input><soap:body use="encoded" namespace="http://extranet.sjopet.nl/services/watch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></input>
+    <output><soap:body use="encoded" namespace="http://extranet.sjopet.nl/services/watch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></output>
+  </operation>
+  <operation name="NVS_service_watch..geef_project">
+    <soap:operation soapAction="http://extranet.sjopet.nl/services/watch#geef_project" style="rpc"/>
+    <input><soap:body use="encoded" namespace="http://extranet.sjopet.nl/services/watch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></input>
+    <output><soap:body use="encoded" namespace="http://extranet.sjopet.nl/services/watch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></output>
+  </operation>
+  <operation name="NVS_service_watch..geef_projectonderdelen">
+    <soap:operation soapAction="http://extranet.sjopet.nl/services/watch#geef_projectonderdelen" style="rpc"/>
+    <input><soap:body use="encoded" namespace="http://extranet.sjopet.nl/services/watch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></input>
+    <output><soap:body use="encoded" namespace="http://extranet.sjopet.nl/services/watch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></output>
+  </operation>
+  <operation name="NVS_service_watch..geef_contactpersonen">
+    <soap:operation soapAction="http://extranet.sjopet.nl/services/watch#geef_contactpersonen" style="rpc"/>
+    <input><soap:body use="encoded" namespace="http://extranet.sjopet.nl/services/watch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></input>
+    <output><soap:body use="encoded" namespace="http://extranet.sjopet.nl/services/watch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></output>
+  </operation>
+  <operation name="NVS_service_watch..geef_alle_contactpersonen">
+    <soap:operation soapAction="http://extranet.sjopet.nl/services/watch#geef_alle_contactpersonen" style="rpc"/>
+    <input><soap:body use="encoded" namespace="http://extranet.sjopet.nl/services/watch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></input>
+    <output><soap:body use="encoded" namespace="http://extranet.sjopet.nl/services/watch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></output>
+  </operation>
+  <operation name="NVS_service_watch..geef_contactpersoon">
+    <soap:operation soapAction="http://extranet.sjopet.nl/services/watch#geef_contactpersoon" style="rpc"/>
+    <input><soap:body use="encoded" namespace="http://extranet.sjopet.nl/services/watch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></input>
+    <output><soap:body use="encoded" namespace="http://extranet.sjopet.nl/services/watch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></output>
+  </operation>
+  <operation name="NVS_service_watch..geef_uren">
+    <soap:operation soapAction="http://extranet.sjopet.nl/services/watch#geef_uren" style="rpc"/>
+    <input><soap:body use="encoded" namespace="http://extranet.sjopet.nl/services/watch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></input>
+    <output><soap:body use="encoded" namespace="http://extranet.sjopet.nl/services/watch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></output>
+  </operation>
+  <operation name="NVS_service_watch..update_klanten">
+    <soap:operation soapAction="http://extranet.sjopet.nl/services/watch#update_klanten" style="rpc"/>
+    <input><soap:body use="encoded" namespace="http://extranet.sjopet.nl/services/watch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></input>
+    <output><soap:body use="encoded" namespace="http://extranet.sjopet.nl/services/watch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></output>
+  </operation>
+  <operation name="NVS_service_watch..update_contactpersonen">
+    <soap:operation soapAction="http://extranet.sjopet.nl/services/watch#update_contactpersonen" style="rpc"/>
+    <input><soap:body use="encoded" namespace="http://extranet.sjopet.nl/services/watch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></input>
+    <output><soap:body use="encoded" namespace="http://extranet.sjopet.nl/services/watch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></output>
+  </operation>
+  <operation name="NVS_service_watch..insert_klant">
+    <soap:operation soapAction="http://extranet.sjopet.nl/services/watch#insert_klant" style="rpc"/>
+    <input><soap:body use="encoded" namespace="http://extranet.sjopet.nl/services/watch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></input>
+    <output><soap:body use="encoded" namespace="http://extranet.sjopet.nl/services/watch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></output>
+  </operation>
+  <operation name="NVS_service_watch..insert_contactpersoon">
+    <soap:operation soapAction="http://extranet.sjopet.nl/services/watch#insert_contactpersoon" style="rpc"/>
+    <input><soap:body use="encoded" namespace="http://extranet.sjopet.nl/services/watch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></input>
+    <output><soap:body use="encoded" namespace="http://extranet.sjopet.nl/services/watch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></output>
+  </operation>
+</binding>
+<service name="Watch_services">
+  <port name="Watch_servicesPort" binding="tns:Watch_servicesBinding">
+    <soap:address location="http://dev.extranet.sjopet.nl/services/watch.php"/>
+  </port>
+</service>
+</definitions>

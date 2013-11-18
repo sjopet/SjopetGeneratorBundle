@@ -1,0 +1,22 @@
+{
+    "name": "sjopet/generator",
+    "type": "symfony-bundle",
+    "description": "Symfony SjopetGeneratorBundle",
+    "keywords": ["Soap Client Generator", "soap", "sjopet", "webservice"],
+    "authors": [
+            {
+                "name": "Sjoerd Peters",
+                "email": "speters@netvlies.nl",
+                "homepage": "http://www.netvlies.nl"
+            }
+        ],
+    "require": {
+            "sensio/generator-bundle": ">=2.0",
+            "twig/twig": ">=1.6"
+
+        },
+    "autoload":     {
+        "psr-0": { "Sjopet\\Bundle\\GeneratorBundle": "" }
+    },
+    "target-dir": "Sjopet/Bundle/GeneratorBundle"
+}

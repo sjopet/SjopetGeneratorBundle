@@ -1,0 +1,22 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="{{ extension_alias }}.wsdl"/>
+    {% for service in services %}
+    <parameter key="{{ extension_alias }}.{{ service.name }}">{{ namespace }}\Service\{{ service.class }}</parameter>
+    {% endfor -%}
+    </parameters>
+
+    <services>
+    {% for service in services %}
+    <service id="{{ extension_alias }}.{{ service.name }}.service" class="%{{ extension_alias }}.{{ service.name }}%" >
+            <argument type="string">%{{ extension_alias }}.wsdl%</argument>
+            <argument type="service" id="validator" />
+        </service>
+    {% endfor -%}
+    </services>
+</container>

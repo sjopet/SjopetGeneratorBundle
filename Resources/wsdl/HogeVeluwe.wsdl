@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions targetNamespace="http://www.recreatex.be/webshop/v1.0/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
+                  xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+                  xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+                  xmlns:tns="http://www.recreatex.be/webshop/v1.0/"
+                  xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing"
+                  xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy"
+                  xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy"
+                  xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl"
+                  xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract"
+                  xmlns:wsa10="http://www.w3.org/2005/08/addressing"
+                  xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex"
+                  xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata">
+    <wsdl:types>
+        <xsd:schema targetNamespace="http://www.recreatex.be/webshop/v1.0/Imports">
+            <xsd:import schemaLocation="http://www.hogeveluwe.nl/wsdl2/WebShop.svc?xsd=xsd0"
+                        namespace="http://www.recreatex.be/webshop/v1.0/"/>
+            <xsd:import schemaLocation="http://www.hogeveluwe.nl/wsdl2/WebShop.svc?xsd=xsd1"
+                        namespace="http://schemas.microsoft.com/2003/10/Serialization/"/>
+            <xsd:import schemaLocation="http://www.hogeveluwe.nl/wsdl2/WebShop.svc?xsd=xsd2"
+                        namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays"/>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="IWebShop_IsAvailable_InputMessage">
+        <wsdl:part name="parameters" element="tns:IsAvailable"/>
+    </wsdl:message>
+    <wsdl:message name="IWebShop_IsAvailable_OutputMessage">
+        <wsdl:part name="parameters" element="tns:IsAvailableResponse"/>
+    </wsdl:message>
+    <wsdl:message name="AuthenticateUserRequest">
+        <wsdl:part name="Context" element="tns:Context"/>
+        <wsdl:part name="Credentials" element="tns:Credentials"/>
+    </wsdl:message>
+    <wsdl:message name="AuthenticateUserResponse">
+        <wsdl:part name="AuthenticationResult" element="tns:AuthenticationResult"/>
+    </wsdl:message>
+    <wsdl:message name="SavePersonRequest">
+        <wsdl:part name="Context" element="tns:Context"/>
+        <wsdl:part name="Person" element="tns:Person"/>
+    </wsdl:message>
+    <wsdl:message name="SavePersonResponse">
+        <wsdl:part name="SavePersonResult" element="tns:SavePersonResult"/>
+    </wsdl:message>
+    <wsdl:message name="ForgotPasswordRequest">
+        <wsdl:part name="Context" element="tns:Context"/>
+        <wsdl:part name="Login" element="tns:Login"/>
+    </wsdl:message>
+    <wsdl:message name="ForgotPasswordResponse">
+        <wsdl:part name="ForgotPasswordResult" element="tns:ForgotPasswordResult"/>
+    </wsdl:message>
+    <wsdl:message name="FindPersonsRequest">
+        <wsdl:part name="Context" element="tns:Context"/>
+        <wsdl:part name="Criteria" element="tns:Criteria"/>
+    </wsdl:message>
+    <wsdl:message name="FindPersonsResponse">
+        <wsdl:part name="FindPersonResult" element="tns:FindPersonResult"/>
+    </wsdl:message>
+    <wsdl:message name="ListActivityTypesRequest">
+        <wsdl:part name="Context" element="tns:Context"/>
+    </wsdl:message>
+    <wsdl:message name="ListActivityTypesResponse">
+        <wsdl:part name="ActivityTypes" element="tns:ActivityTypes"/>
+    </wsdl:message>
+    <wsdl:message name="FindActivitiesRequest">
+        <wsdl:part name="ActivitySearchCriteria" element="tns:ActivitySearchCriteria"/>
+        <wsdl:part name="Context" element="tns:Context"/>
+    </wsdl:message>
+    <wsdl:message name="FindActivitiesResponse">
+        <wsdl:part name="Activities" element="tns:Activities"/>
+    </wsdl:message>
+    <wsdl:message name="ListArticleGroupsRequest">
+        <wsdl:part name="ArticleGroupSearchCriteria" element="tns:ArticleGroupSearchCriteria"/>
+        <wsdl:part name="Context" element="tns:Context"/>
+    </wsdl:message>
+    <wsdl:message name="ListArticleGroupsResponse">
+        <wsdl:part name="ArticleGroups" element="tns:ArticleGroups"/>
+    </wsdl:message>
+    <wsdl:message name="FindArticlesRequest">
+        <wsdl:part name="ArticleSearchCriteria" element="tns:ArticleSearchCriteria"/>
+        <wsdl:part name="Context" element="tns:Context"/>
+    </wsdl:message>
+    <wsdl:message name="FindArticlesResponse">
+        <wsdl:part name="Articles" element="tns:Articles"/>
+    </wsdl:message>
+    <wsdl:message name="ListExpositionTypesRequest">
+        <wsdl:part name="Context" element="tns:Context"/>
+    </wsdl:message>
+    <wsdl:message name="ListExpositionTypesResponse">
+        <wsdl:part name="ExpositionTypes" element="tns:ExpositionTypes"/>
+    </wsdl:message>
+    <wsdl:message name="FindExpositionRequest">
+        <wsdl:part name="Context" element="tns:Context"/>
+        <wsdl:part name="ExpositionSearchCriteria" element="tns:ExpositionSearchCriteria"/>
+    </wsdl:message>
+    <wsdl:message name="FindExpositionResponse">
+        <wsdl:part name="Expositions" element="tns:Expositions"/>
+    </wsdl:message>
+    <wsdl:message name="ListExpositionPeriodsRequest">
+        <wsdl:part name="Context" element="tns:Context"/>
+        <wsdl:part name="ExpositionPeriodSearchCriteria" element="tns:ExpositionPeriodSearchCriteria"/>
+    </wsdl:message>
+    <wsdl:message name="ListExpositionPeriodsResponse">
+        <wsdl:part name="ExpositionPeriods" element="tns:ExpositionPeriods"/>
+    </wsdl:message>
+    <wsdl:message name="ListAudiencesRequest">
+        <wsdl:part name="Context" element="tns:Context"/>
+    </wsdl:message>
+    <wsdl:message name="ListAudiencesResponse">
+        <wsdl:part name="Audiences" element="tns:Audiences"/>
+    </wsdl:message>
+    <wsdl:message name="ValidateBasketRequest">
+        <wsdl:part name="Basket" element="tns:Basket"/>
+        <wsdl:part name="Context" element="tns:Context"/>
+    </wsdl:message>
+    <wsdl:message name="ValidateBasketResponse">
+        <wsdl:part name="ValidateBasketResult" element="tns:ValidateBasketResult"/>
+    </wsdl:message>
+    <wsdl:message name="ValidateBasketItemRequest">
+        <wsdl:part name="BasketItem" element="tns:BasketItem"/>
+        <wsdl:part name="Context" element="tns:Context"/>
+    </wsdl:message>
+    <wsdl:message name="ValidateBasketItemResponse">
+        <wsdl:part name="BasketItemValidationResult" element="tns:BasketItemValidationResult"/>
+    </wsdl:message>
+    <wsdl:message name="CheckoutBasketRequest">
+        <wsdl:part name="Basket" element="tns:Basket"/>
+        <wsdl:part name="Context" element="tns:Context"/>
+    </wsdl:message>
+    <wsdl:message name="CheckoutBasketResponse">
+        <wsdl:part name="CheckoutBasketResult" element="tns:CheckoutBasketResult"/>
+    </wsdl:message>
+    <wsdl:message name="LockBasketItemsRequest">
+        <wsdl:part name="BasketItems" element="tns:BasketItems"/>
+        <wsdl:part name="Context" element="tns:Context"/>
+    </wsdl:message>
+    <wsdl:message name="LockBasketItemsResponse">
+        <wsdl:part name="LockBasketResult" element="tns:LockBasketResult"/>
+    </wsdl:message>
+    <wsdl:message name="UnlockBasketItemsRequest">
+        <wsdl:part name="Context" element="tns:Context"/>
+        <wsdl:part name="LockTickets" element="tns:LockTickets"/>
+    </wsdl:message>
+    <wsdl:message name="IWebShop_UnlockBasketItems_OutputMessage"/>
+    <wsdl:message name="RecalculateBasketRequest">
+        <wsdl:part name="Basket" element="tns:Basket"/>
+        <wsdl:part name="Context" element="tns:Context"/>
+    </wsdl:message>
+    <wsdl:message name="RecalculateBasketResponse">
+        <wsdl:part name="Basket" element="tns:Basket"/>
+    </wsdl:message>
+    <wsdl:message name="ExtendLockPeriodRequest">
+        <wsdl:part name="Context" element="tns:Context"/>
+        <wsdl:part name="LockTickets" element="tns:LockTickets"/>
+    </wsdl:message>
+    <wsdl:message name="IWebShop_ExtendLockPeriod_OutputMessage"/>
+    <wsdl:message name="ListPaymentMethodRequest">
+        <wsdl:part name="Context" element="tns:Context"/>
+    </wsdl:message>
+    <wsdl:message name="ListPaymentMethodResponse">
+        <wsdl:part name="PaymentMethods" element="tns:PaymentMethods"/>
+    </wsdl:message>
+    <wsdl:message name="ListCultureActivitiesRequest">
+        <wsdl:part name="Context" element="tns:Context"/>
+    </wsdl:message>
+    <wsdl:message name="ListCultureActivitiesResponse">
+        <wsdl:part name="CultureActivities" element="tns:CultureActivities"/>
+    </wsdl:message>
+    <wsdl:message name="FindCultureEventsRequest">
+        <wsdl:part name="Context" element="tns:Context"/>
+        <wsdl:part name="CultureEventSearchCriteria" element="tns:CultureEventSearchCriteria"/>
+    </wsdl:message>
+    <wsdl:message name="FindCultureEventsResponse">
+        <wsdl:part name="CultureEvents" element="tns:CultureEvents"/>
+    </wsdl:message>
+    <wsdl:message name="ListHallsRequest">
+        <wsdl:part name="Context" element="tns:Context"/>
+    </wsdl:message>
+    <wsdl:message name="ListHallsResponse">
+        <wsdl:part name="Halls" element="tns:Halls"/>
+    </wsdl:message>
+    <wsdl:message name="GetHallSeatingRequest">
+        <wsdl:part name="Context" element="tns:Context"/>
+        <wsdl:part name="HallId" element="tns:HallId"/>
+    </wsdl:message>
+    <wsdl:message name="GetHallSeatingResponse">
+        <wsdl:part name="Hall" element="tns:Hall"/>
+    </wsdl:message>
+    <wsdl:message name="GetSeatAllocationsRequest">
+        <wsdl:part name="AllocationIncludes" element="tns:AllocationIncludes"/>
+        <wsdl:part name="Context" element="tns:Context"/>
+        <wsdl:part name="CultureEventId" element="tns:CultureEventId"/>
+        <wsdl:part name="SeatBlockCode" element="tns:SeatBlockCode"/>
+    </wsdl:message>
+    <wsdl:message name="GetSeatAllocationsResponse">
+        <wsdl:part name="Overview" element="tns:Overview"/>
+    </wsdl:message>
+    <wsdl:portType msc:usingSession="false" name="IWebShop">
+        <wsdl:documentation>
+            <summary>ReCreateX Web Shop Web Services</summary>
+        </wsdl:documentation>
+        <wsdl:operation name="IsAvailable">
+            <wsdl:input wsaw:Action="http://www.recreatex.be/webshop/v1.0/IWebShop/IsAvailable"
+                        message="tns:IWebShop_IsAvailable_InputMessage"/>
+            <wsdl:output wsaw:Action="http://www.recreatex.be/webshop/v1.0/IWebShop/IsAvailableResponse"
+                         message="tns:IWebShop_IsAvailable_OutputMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="AuthenticateUser">
+            <wsdl:input wsaw:Action="http://www.recreatex.be/webshop/v1.0/IWebShop/AuthenticateUser"
+                        name="AuthenticateUserRequest" message="tns:AuthenticateUserRequest"/>
+            <wsdl:output wsaw:Action="http://www.recreatex.be/webshop/v1.0/IWebShop/AuthenticateUserResponse"
+                         name="AuthenticateUserResponse" message="tns:AuthenticateUserResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="SavePerson">
+            <wsdl:input wsaw:Action="http://www.recreatex.be/webshop/v1.0/IWebShop/SavePerson" name="SavePersonRequest"
+                        message="tns:SavePersonRequest"/>
+            <wsdl:output wsaw:Action="http://www.recreatex.be/webshop/v1.0/IWebShop/SavePersonResponse"
+                         name="SavePersonResponse" message="tns:SavePersonResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="ForgotPassword">
+            <wsdl:input wsaw:Action="http://www.recreatex.be/webshop/v1.0/IWebShop/ForgotPassword"
+                        name="ForgotPasswordRequest" message="tns:ForgotPasswordRequest"/>
+            <wsdl:output wsaw:Action="http://www.recreatex.be/webshop/v1.0/IWebShop/ForgotPasswordResponse"
+                         name="ForgotPasswordResponse" message="tns:ForgotPasswordResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="FindPerson">
+            <wsdl:input wsaw:Action="http://www.recreatex.be/webshop/v1.0/IWebShop/FindPerson" name="FindPersonsRequest"
+                        message="tns:FindPersonsRequest"/>
+            <wsdl:output wsaw:Action="http://www.recreatex.be/webshop/v1.0/IWebShop/FindPersonResponse"
+                         name="FindPersonsResponse" message="tns:FindPersonsResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="ListActivityTypes">
+            <wsdl:input wsaw:Action="http://www.recreatex.be/webshop/v1.0/IWebShop/ListActivityTypes"
+                        name="ListActivityTypesRequest" message="tns:ListActivityTypesRequest"/>
+            <wsdl:output wsaw:Action="http://www.recreatex.be/webshop/v1.0/IWebShop/ListActivityTypesResponse"
+                         name="ListActivityTypesResponse" message="tns:ListActivityTypesResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="FindActivities">
+            <wsdl:input wsaw:Action="http://www.recreatex.be/webshop/v1.0/IWebShop/FindActivities"
+                        name="FindActivitiesRequest" message="tns:FindActivitiesRequest"/>
+            <wsdl:output wsaw:Action="http://www.recreatex.be/webshop/v1.0/IWebShop/FindActivitiesResponse"
+                         name="FindActivitiesResponse" message="tns:FindActivitiesResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="ListArticleGroups">
+            <wsdl:input wsaw:Action="http://www.recreatex.be/webshop/v1.0/IWebShop/ListArticleGroups"
+                        name="ListArticleGroupsRequest" message="tns:ListArticleGroupsRequest"/>
+            <wsdl:output wsaw:Action="http://www.recreatex.be/webshop/v1.0/IWebShop/ListArticleGroupsResponse"
+                         name="ListArticleGroupsResponse" message="tns:ListArticleGroupsResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="FindArticles">
+            <wsdl:input wsaw:Action="http://www.recreatex.be/webshop/v1.0/IWebShop/FindArticles"
+                        name="FindArticlesRequest" message="tns:FindArticlesRequest"/>
+            <wsdl:output wsaw:Action="http://www.recreatex.be/webshop/v1.0/IWebShop/FindArticlesResponse"
+                         name="FindArticlesResponse" message="tns:FindArticlesResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="ListExpositionTypes">
+            <wsdl:documentation>
+                <summary>Returns all Exposition Groups</summary>
+            </wsdl:documentation>
+            <wsdl:input wsaw:Action="http://www.recreatex.be/webshop/v1.0/IWebShop/ListExpositionTypes"
+                        name="ListExpositionTypesRequest" message="tns:ListExpositionTypesRequest"/>
+            <wsdl:output wsaw:Action="http://www.recreatex.be/webshop/v1.0/IWebShop/ListExpositionTypesResponse"
+                         name="ListExpositionTypesResponse" message="tns:ListExpositionTypesResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="FindExpositions">
+            <wsdl:documentation>
+                <summary>Find Expositions</summary>
+            </wsdl:documentation>
+            <wsdl:input wsaw:Action="http://www.recreatex.be/webshop/v1.0/IWebShop/FindExpositions"
+                        name="FindExpositionRequest" message="tns:FindExpositionRequest">
+                <wsdl:documentation>
+                    <summary>The request for finding expositions</summary>
+                </wsdl:documentation>
+            </wsdl:input>
+            <wsdl:output wsaw:Action="http://www.recreatex.be/webshop/v1.0/IWebShop/FindExpositionsResponse"
+                         name="FindExpositionResponse" message="tns:FindExpositionResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="ListExpositionPeriods">
+            <wsdl:documentation>
+                <summary>Lists Exposition Periods</summary>
+            </wsdl:documentation>
+            <wsdl:input wsaw:Action="http://www.recreatex.be/webshop/v1.0/IWebShop/ListExpositionPeriods"
+                        name="ListExpositionPeriodsRequest" message="tns:ListExpositionPeriodsRequest"/>
+            <wsdl:output wsaw:Action="http://www.recreatex.be/webshop/v1.0/IWebShop/ListExpositionPeriodsResponse"
+                         name="ListExpositionPeriodsResponse" message="tns:ListExpositionPeriodsResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="ListAudiences">
+            <wsdl:documentation>
+                <summary>Lists Exposition Audiences</summary>
+            </wsdl:documentation>
+            <wsdl:input wsaw:Action="http://www.recreatex.be/webshop/v1.0/IWebShop/ListAudiences"
+                        name="ListAudiencesRequest" message="tns:ListAudiencesRequest"/>
+            <wsdl:output wsaw:Action="http://www.recreatex.be/webshop/v1.0/IWebShop/ListAudiencesResponse"
+                         name="ListAudiencesResponse" message="tns:ListAudiencesResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="ValidateBasket">
+            <wsdl:input wsaw:Action="http://www.recreatex.be/webshop/v1.0/IWebShop/ValidateBasket"
+                        name="ValidateBasketRequest" message="tns:ValidateBasketRequest"/>
+            <wsdl:output wsaw:Action="http://www.recreatex.be/webshop/v1.0/IWebShop/ValidateBasketResponse"
+                         name="ValidateBasketResponse" message="tns:ValidateBasketResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="ValidateBasketItem">
+            <wsdl:input wsaw:Action="http://www.recreatex.be/webshop/v1.0/IWebShop/ValidateBasketItem"
+                        name="ValidateBasketItemRequest" message="tns:ValidateBasketItemRequest"/>
+            <wsdl:output wsaw:Action="http://www.recreatex.be/webshop/v1.0/IWebShop/ValidateBasketItemResponse"
+                         name="ValidateBasketItemResponse" message="tns:ValidateBasketItemResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="CheckoutBasket">
+            <wsdl:input wsaw:Action="http://www.recreatex.be/webshop/v1.0/IWebShop/CheckoutBasket"
+                        name="CheckoutBasketRequest" message="tns:CheckoutBasketRequest"/>
+            <wsdl:output wsaw:Action="http://www.recreatex.be/webshop/v1.0/IWebShop/CheckoutBasketResponse"
+                         name="CheckoutBasketResponse" message="tns:CheckoutBasketResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="LockBasketItems">
+            <wsdl:input wsaw:Action="http://www.recreatex.be/webshop/v1.0/IWebShop/LockBasketItems"
+                        name="LockBasketItemsRequest" message="tns:LockBasketItemsRequest"/>
+            <wsdl:output wsaw:Action="http://www.recreatex.be/webshop/v1.0/IWebShop/LockBasketItemsResponse"
+                         name="LockBasketItemsResponse" message="tns:LockBasketItemsResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="UnlockBasketItems">
+            <wsdl:input wsaw:Action="http://www.recreatex.be/webshop/v1.0/IWebShop/UnlockBasketItems"
+                        name="UnlockBasketItemsRequest" message="tns:UnlockBasketItemsRequest"/>
+            <wsdl:output wsaw:Action="http://www.recreatex.be/webshop/v1.0/IWebShop/UnlockBasketItemsResponse"
+                         message="tns:IWebShop_UnlockBasketItems_OutputMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="ReCalculateBasket">
+            <wsdl:input wsaw:Action="http://www.recreatex.be/webshop/v1.0/IWebShop/ReCalculateBasket"
+                        name="RecalculateBasketRequest" message="tns:RecalculateBasketRequest"/>
+            <wsdl:output wsaw:Action="http://www.recreatex.be/webshop/v1.0/IWebShop/ReCalculateBasketResponse"
+                         name="RecalculateBasketResponse" message="tns:RecalculateBasketResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="ExtendLockPeriod">
+            <wsdl:input wsaw:Action="http://www.recreatex.be/webshop/v1.0/IWebShop/ExtendLockPeriod"
+                        name="ExtendLockPeriodRequest" message="tns:ExtendLockPeriodRequest"/>
+            <wsdl:output wsaw:Action="http://www.recreatex.be/webshop/v1.0/IWebShop/ExtendLockPeriodResponse"
+                         message="tns:IWebShop_ExtendLockPeriod_OutputMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="ListPaymentMethods">
+            <wsdl:input wsaw:Action="http://www.recreatex.be/webshop/v1.0/IWebShop/ListPaymentMethods"
+                        name="ListPaymentMethodRequest" message="tns:ListPaymentMethodRequest"/>
+            <wsdl:output wsaw:Action="http://www.recreatex.be/webshop/v1.0/IWebShop/ListPaymentMethodsResponse"
+                         name="ListPaymentMethodResponse" message="tns:ListPaymentMethodResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="ListCultureActivities">
+            <wsdl:documentation>
+                <summary>Returns all Culture Activities</summary>
+            </wsdl:documentation>
+            <wsdl:input wsaw:Action="http://www.recreatex.be/webshop/v1.0/IWebShop/ListCultureActivities"
+                        name="ListCultureActivitiesRequest" message="tns:ListCultureActivitiesRequest"/>
+            <wsdl:output wsaw:Action="http://www.recreatex.be/webshop/v1.0/IWebShop/ListCultureActivitiesResponse"
+                         name="ListCultureActivitiesResponse" message="tns:ListCultureActivitiesResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="FindCultureEvents">
+            <wsdl:documentation>
+                <summary>Find Culture Events based on the search criteria object</summary>
+            </wsdl:documentation>
+            <wsdl:input wsaw:Action="http://www.recreatex.be/webshop/v1.0/IWebShop/FindCultureEvents"
+                        name="FindCultureEventsRequest" message="tns:FindCultureEventsRequest"/>
+            <wsdl:output wsaw:Action="http://www.recreatex.be/webshop/v1.0/IWebShop/FindCultureEventsResponse"
+                         name="FindCultureEventsResponse" message="tns:FindCultureEventsResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="ListHalls">
+            <wsdl:documentation>
+                <summary>Return all the halls (Not including seating information</summary>
+            </wsdl:documentation>
+            <wsdl:input wsaw:Action="http://www.recreatex.be/webshop/v1.0/IWebShop/ListHalls" name="ListHallsRequest"
+                        message="tns:ListHallsRequest"/>
+            <wsdl:output wsaw:Action="http://www.recreatex.be/webshop/v1.0/IWebShop/ListHallsResponse"
+                         name="ListHallsResponse" message="tns:ListHallsResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="GetHallSeating">
+            <wsdl:documentation>
+                <summary>Return the requested hall (including seating information</summary>
+            </wsdl:documentation>
+            <wsdl:input wsaw:Action="http://www.recreatex.be/webshop/v1.0/IWebShop/GetHallSeating"
+                        name="GetHallSeatingRequest" message="tns:GetHallSeatingRequest"/>
+            <wsdl:output wsaw:Action="http://www.recreatex.be/webshop/v1.0/IWebShop/GetHallSeatingResponse"
+                         name="GetHallSeatingResponse" message="tns:GetHallSeatingResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="GetSeatAllocations">
+            <wsdl:documentation>
+                <summary>Returns the status of the seats in a hall/block for an event</summary>
+            </wsdl:documentation>
+            <wsdl:input wsaw:Action="http://www.recreatex.be/webshop/v1.0/IWebShop/GetSeatAllocations"
+                        name="GetSeatAllocationsRequest" message="tns:GetSeatAllocationsRequest"/>
+            <wsdl:output wsaw:Action="http://www.recreatex.be/webshop/v1.0/IWebShop/GetSeatAllocationsResponse"
+                         name="GetSeatAllocationsResponse" message="tns:GetSeatAllocationsResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+</wsdl:definitions>

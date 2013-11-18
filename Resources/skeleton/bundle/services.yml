@@ -1,0 +1,17 @@
+parameters:
+    {{ extension_alias }}.wsdl: ~
+    {% for service in services %}
+    {{ extension_alias }}.{{ service.name }}: {{ namespace }}\Service\{{ service.class }}
+    {% endfor -%}
+
+services:
+    {% for service in services %}
+    {{ extension_alias }}.{{ service.name }}.service:
+        class: %{{ extension_alias }}.{{ service.name }}%
+        arguments: [%{{ extension_alias }}.wsdl%, @validator]
+    {% endfor -%}
+    
+    
+#    {{ extension_alias }}.example:
+#        class: %{{ extension_alias }}.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
